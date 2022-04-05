@@ -13,6 +13,7 @@ import { unstable_useEnhancedEffect as useEnhancedEffect } from "@mui/material";
 import theme from "./src/theme";
 import ClientStyleContext from "./src/ClientStyleContext";
 import Layout from "./src/Layout";
+import Container from "@mui/material/Container";
 
 interface DocumentProps {
   children: React.ReactNode;
@@ -73,9 +74,9 @@ const Document = withEmotionCache(
 export default function App() {
   return (
     <Document>
-      <Layout>
+      <Container maxWidth={false} disableGutters sx={{ minHeight: "100vh" }}>
         <Outlet />
-      </Layout>
+      </Container>
     </Document>
   );
 }
