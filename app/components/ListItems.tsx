@@ -11,28 +11,29 @@ import AssignmentIcon from "@mui/icons-material/Assignment";
 import PaidIcon from "@mui/icons-material/Paid";
 import ReceiptIcon from "@mui/icons-material/Receipt";
 import PersonIcon from "@mui/icons-material/Person";
+import { Link } from "@remix-run/react";
 
 export const mainListItems = (
   <React.Fragment>
-    <ListItemButton>
+    <ListItemButton component={Link} to="/dashboard/">
       <ListItemIcon>
         <HomeIcon sx={{ color: "lightgray" }} />
       </ListItemIcon>
       <ListItemText primary="Dashboard" />
     </ListItemButton>
-    <ListItemButton>
+    <ListItemButton component={Link} to="/dashboard/transactions">
       <ListItemIcon>
         <ReceiptIcon sx={{ color: "lightgray" }} />
       </ListItemIcon>
       <ListItemText primary="Transactions" />
     </ListItemButton>
-    <ListItemButton>
+    <ListItemButton component={Link} to="/dashboard/expenses">
       <ListItemIcon>
         <PaidIcon sx={{ color: "lightgray" }} />
       </ListItemIcon>
       <ListItemText primary="Expenses" />
     </ListItemButton>
-    <ListItemButton>
+    <ListItemButton component={Link} to="/dashboard/profile">
       <ListItemIcon>
         <PersonIcon sx={{ color: "lightgray" }} />
       </ListItemIcon>
