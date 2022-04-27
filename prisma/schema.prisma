@@ -2,10 +2,66 @@
 // learn more about it in the docs: https://pris.ly/d/prisma-schema
 
 generator client {
-  provider = "prisma-client-js"
+  previewFeatures = ["referentialIntegrity"]
+  provider        = "prisma-client-js"
 }
 
 datasource db {
-  provider = "mysql"
-  url      = env("DATABASE_URL")
+  provider             = "mysql"
+  url                  = env("DATABASE_URL")
+  referentialIntegrity = "prisma"
+}
+
+model User {
+  id       String @id @default(cuid())
+  name     String @db.VarChar(150)
+  email    String @unique
+  mobile   String @db.VarChar(15)
+  password String @unique
+
+  createdAt DateTime @default(now())
+}
+
+model Criminal {
+  id        String   @id @default(cuid())
+  name      String   @db.VarChar(150)
+  height    Float    @db.Float
+  gender    Gender   @default(MALE)
+  dob       DateTime @default(now())
+  phone     String   @db.VarChar(50)
+  weight    Float    @db.Float
+  email     String   @unique
+  image     String?  @db.VarChar(250)
+  createdAt DateTime @default(now())
+  statement String?  @db.Text
+  handler   Police?  @relation(fields: [policeId], references: [id])
+  policeId  String?  @unique
+  crimes    Crime[]
+  court     Court?   @default(NOTASSIGNED)
+
+  @@index([policeId])
+}
+
+model Crime {
+  id          String     @id @default(cuid())
+  description String     @db.VarChar(50)
+  criminals   Criminal[]
+}
+
+model Police {
+  id           String    @id @default(cuid())
+  name         String    @db.VarChar(150)
+  badge_number Int       @db.MediumInt
+  case         Criminal?
+}
+
+enum Court {
+  HIGH_COURT
+  SUPREME_COURT
+  NOTASSIGNED
+}
+
+enum Gender {
+  MALE
+  FEMALE
 }

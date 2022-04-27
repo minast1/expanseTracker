@@ -2,51 +2,57 @@ import * as React from "react";
 import ListItemButton from "@mui/material/ListItemButton";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
-import HomeIcon from "@mui/icons-material/Home";
+import ListSubheader from "@mui/material/ListSubheader";
+import DashboardIcon from "@mui/icons-material/Dashboard";
+import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
+import PeopleIcon from "@mui/icons-material/People";
+import BarChartIcon from "@mui/icons-material/BarChart";
+import LayersIcon from "@mui/icons-material/Layers";
 import AssignmentIcon from "@mui/icons-material/Assignment";
-import PaidIcon from "@mui/icons-material/Paid";
-import ReceiptIcon from "@mui/icons-material/Receipt";
-import PersonIcon from "@mui/icons-material/Person";
 import { Link } from "@remix-run/react";
-import AccountBalanceWalletIcon from "@mui/icons-material/AccountBalanceWallet";
 
 export const mainListItems = (
   <React.Fragment>
-    <ListItemButton component={Link} to="/dashboard/">
+    <Link to="/dashboard/" style={{ textDecoration: "none", color: "gray" }}>
+      <ListItemButton>
+        <ListItemIcon>
+          <DashboardIcon />
+        </ListItemIcon>
+        <ListItemText primary="Dashboard" />
+      </ListItemButton>
+    </Link>
+    <ListItemButton>
       <ListItemIcon>
-        <HomeIcon sx={{ color: "lightgray" }} />
+        <ShoppingCartIcon />
       </ListItemIcon>
-      <ListItemText primary="Dashboard" />
+      <ListItemText primary="Orders" />
     </ListItemButton>
-    <ListItemButton component={Link} to="/dashboard/transactions">
+    <ListItemButton>
       <ListItemIcon>
-        <ReceiptIcon sx={{ color: "lightgray" }} />
+        <PeopleIcon />
       </ListItemIcon>
-      <ListItemText primary="Transactions" />
+      <ListItemText primary="Customers" />
     </ListItemButton>
-    <ListItemButton component={Link} to="/dashboard/expenses">
+    <ListItemButton>
       <ListItemIcon>
-        <PaidIcon sx={{ color: "lightgray" }} />
+        <BarChartIcon />
       </ListItemIcon>
-      <ListItemText primary="Expenses" />
+      <ListItemText primary="Reports" />
     </ListItemButton>
-    <ListItemButton component={Link} to="/dashboard/profile">
+    <ListItemButton>
       <ListItemIcon>
-        <PersonIcon sx={{ color: "lightgray" }} />
+        <LayersIcon />
       </ListItemIcon>
-      <ListItemText primary="Profile" />
-    </ListItemButton>
-    <ListItemButton component={Link} to="/dashboard/wallet">
-      <ListItemIcon>
-        <AccountBalanceWalletIcon sx={{ color: "lightgray" }} />
-      </ListItemIcon>
-      <ListItemText primary="Link Account" />
+      <ListItemText primary="Integrations" />
     </ListItemButton>
   </React.Fragment>
 );
 
 export const secondaryListItems = (
   <React.Fragment>
+    <ListSubheader component="div" inset>
+      Saved reports
+    </ListSubheader>
     <ListItemButton>
       <ListItemIcon>
         <AssignmentIcon />

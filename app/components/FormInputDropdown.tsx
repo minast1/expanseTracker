@@ -1,48 +1,43 @@
-import MenuItem from "@mui/material/MenuItem";
-import React from "react";
+import * as React from "react";
 import { useField } from "remix-validated-form";
-import TextField from "@mui/material/TextField";
 
-type FormInputProps = {
+type optionsType = {
+  label: string | number;
+  value: string | number;
+};
+type AppProps = {
+  options: optionsType[];
   name: string;
-  label: string;
-  options: OptionProps[];
-  styles?: {};
 };
 
-type OptionProps = {
-  label: string;
-  value: any;
-};
-
-export const FormInputDropdown = ({
-  name,
-  options,
-  styles,
-  label,
-}: FormInputProps) => {
-  const { getInputProps, error, defaultValue } = useField(name);
-
-  /*React.useEffect(() => {
-       setValue(defaultValue)
-     }, [defaultValue]) */
+export default function FormInputDropdown({ name, options }: AppProps) {
+  const { error, getInputProps } = useField(name as string);
 
   return (
-    <TextField
-      helperText={error ? <span style={{ color: "red" }}>{error}</span> : null}
-      size="small"
-      key={defaultValue}
-      select
-      {...getInputProps({ id: name })}
-      sx={styles}
-      label={label}
-      variant="outlined"
-    >
-      {options.map((option: any) => (
-        <MenuItem key={option.value} value={option.value}>
-          {option.label}
-        </MenuItem>
-      ))}
-    </TextField>
+    <div style={{ display: "flex", flexDirection: "column" }}>
+      <select
+        style={{
+          fontSize: "0.9rem",
+          padding: "2px 5px",
+          marginBottom: 10,
+          borderColor: "lightgray",
+          borderWidth: "1px",
+        }}
+        {...getInputProps({ id: name })}
+        multiple
+      >
+        <option value="">--Please choose an option--</option>
+        {options.map((el, index) => (
+          <option key={index} value={el.value}>
+            {el.label}
+          </option>
+        ))}
+      </select>
+      {error ? (
+        <span style={{ color: "red", fontSize: 13, paddingBottom: 5 }}>
+          {error}
+        </span>
+      ) : null}
+    </div>
   );
-};
+}

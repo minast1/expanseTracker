@@ -1,60 +1,59 @@
-import Grid from "@mui/material/Grid";
 import React from "react";
-import { StatisticsCard } from "~/components/StatisticsCard";
-import Paper from "@mui/material/Paper";
-import Chart from "~/components/Chart";
+import Card from "@mui/material/Card";
+import CardContent from "@mui/material/CardContent";
+import CardActions from "@mui/material/CardActions";
+import Button from "@mui/material/Button";
+import { ActionFunction, LoaderFunction } from "@remix-run/node";
+import {
+  deleteCriminalRecord,
+  getAllCriminals,
+} from "~/controllers/criminalController";
+import CriminalsTable from "~/components/CriminalsTable";
+import { Link } from "@remix-run/react";
+import Box from "@mui/material/Box";
+import Avatar from "@mui/material/Avatar";
+//import Typography from "@mui/material/Typography";
 
 const IndexPage = () => {
   return (
-    <>
-      <Grid container spacing={3}>
-        <Grid item xs={12} md={3} lg={3}>
-          <StatisticsCard
-            title="MY REVENUE"
-            subtitle="Current Balance"
-            amount={5000.0}
-          />
-        </Grid>
-        <Grid item xs={12} md={3} lg={3}>
-          <StatisticsCard
-            title="THIS WEEK"
-            subtitle="Total Amount"
-            amount={2000}
-          />
-        </Grid>
-        <Grid item xs={12} md={3} lg={3}>
-          <StatisticsCard
-            title="THIS MONTH"
-            subtitle="Total Amount"
-            amount={3000}
-          />
-        </Grid>
-        <Grid item xs={12} md={3} lg={3}>
-          <StatisticsCard
-            title="LAST MONTH"
-            subtitle="Toal Amount"
-            amount={0}
-          />
-        </Grid>
-      </Grid>
-      <Grid container spacing={3} sx={{ mt: 5 }}>
-        {/* Chart */}
-        <Grid item xs={12} md={12} lg={12}>
-          <Paper
-            elevation={8}
-            sx={{
-              p: 2,
-              display: "flex",
-              flexDirection: "column",
-              height: 240,
-            }}
+    <Card sx={{ mb: 10, mt: 3 }} elevation={12}>
+      <Box display="flex" alignItems="center" ml={2} mt={2}>
+        <Avatar src="/logo.png" alt="" sx={{ width: 100, height: 100 }} />
+        <Box flexGrow={1} />
+        <Link
+          to="/dashboard/create"
+          prefetch="intent"
+          style={{ alignSelf: "flex-end", marginBottom: 10 }}
+        >
+          <Button
+            //href="/dashboard/create"
+            variant="contained"
+            size="small"
+            sx={{ textTransform: "capitalize", mr: 2 }}
           >
-            <Chart />
-          </Paper>
-        </Grid>
-      </Grid>
-    </>
+            Add New Criminal
+          </Button>
+        </Link>
+      </Box>
+
+      <CardContent sx={{ borderTop: "1px solid lightgray" }}>
+        <CriminalsTable />
+      </CardContent>
+      <CardActions disableSpacing></CardActions>
+    </Card>
   );
 };
 
 export default IndexPage;
+
+export let loader: LoaderFunction = async ({ request }) => {
+  // const auth_session = await getSession(request.headers.get("cookie"));
+  return await getAllCriminals();
+};
+
+export const action: ActionFunction = async ({ request }) => {
+  const formData = await request.formData();
+  const id = formData.get("button") as string;
+
+  return await deleteCriminalRecord(id);
+};

@@ -12,7 +12,7 @@ import { withEmotionCache } from "@emotion/react";
 import { unstable_useEnhancedEffect as useEnhancedEffect } from "@mui/material";
 import theme from "./src/theme";
 import ClientStyleContext from "./src/ClientStyleContext";
-import Layout from "./src/Layout";
+//import Layout from "./src/Layout";
 import Container from "@mui/material/Container";
 
 interface DocumentProps {
@@ -87,7 +87,7 @@ export function ErrorBoundary({ error }: { error: Error }) {
 
   return (
     <Document title="Error!">
-      <Layout>
+      <Container maxWidth="md">
         <div>
           <h1>There was an error</h1>
           <p>{error.message}</p>
@@ -97,7 +97,7 @@ export function ErrorBoundary({ error }: { error: Error }) {
             users to see.
           </p>
         </div>
-      </Layout>
+      </Container>
     </Document>
   );
 }
@@ -128,12 +128,12 @@ export function CatchBoundary() {
 
   return (
     <Document title={`${caught.status} ${caught.statusText}`}>
-      <Layout>
+      <Container maxWidth="md">
         <h1>
           {caught.status}: {caught.statusText}
         </h1>
         {message}
-      </Layout>
+      </Container>
     </Document>
   );
 }

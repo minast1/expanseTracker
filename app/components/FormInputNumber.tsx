@@ -12,6 +12,7 @@ export const FormInputNumber = ({ name, ...props }: TextFieldProps) => {
       error={error ? true : false}
       key={defaultValue}
       size="small"
+      type="number"
       {...getInputProps({ id: name })}
       inputProps={{ inputMode: "numeric", pattern: "[0-9]*" }}
       fullWidth
