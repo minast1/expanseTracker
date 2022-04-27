@@ -59,7 +59,7 @@ const ProfilePage = () => {
             <Divider sx={{ backgroundColor: "black", borderWidth: 2 }} />
             <img
               style={{
-                width: 400,
+                width: 450,
                 height: 403,
                 objectFit: "cover",
                 marginTop: 15,

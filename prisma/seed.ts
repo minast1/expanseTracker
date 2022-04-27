@@ -12,22 +12,24 @@ const crimeData: cData[] = Array.from(crimes, (crime) => {
 
 const police = Array.from({ length: 20 }, (el) => ({
     name: faker.fake('{{name.lastName}}, {{name.firstName}}'),
+    email: faker.internet.email(),
+    phone: faker.phone.phoneNumber('+233 ## ### ####'),
     badge_number: faker.datatype.number({min : 101 , max:999})
 }))
 
 async function seed() {
    
               //Crimes  
-     /*await db.crime.createMany({
+     await db.crime.createMany({
         data: crimeData,
         
-     });*/
+     });
     
     //case handlers
-   /*  await db.police.createMany({
+    await db.police.createMany({
         data: police
     });
-    */
+    
     const handlerIds = await db.police.findMany({
         select: {
             id: true

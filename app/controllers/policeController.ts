@@ -1,4 +1,4 @@
-import { Prisma } from "@prisma/client";
+import { Police, Prisma } from "@prisma/client";
 import { db } from "~/lib/db.server"
 
 
@@ -10,6 +10,13 @@ export const getAllPolice = async () => {
       }
   })
     return data; 
+}
+
+export const createPolice =async (formData: Omit<Police, "id">) => {
+    const data = await db.police.create({
+        data: formData
+    });
+    return data;
 }
 
  export type policeWithCaseType = Prisma.PromiseReturnType<typeof getAllPoliceWithCases>

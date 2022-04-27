@@ -50,6 +50,8 @@ model Crime {
 
 model Police {
   id           String    @id @default(cuid())
+  email        String    @unique
+  phone        String    @db.VarChar(50)
   name         String    @db.VarChar(150)
   badge_number Int       @db.MediumInt
   case         Criminal?

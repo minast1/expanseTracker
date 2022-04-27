@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import * as React from "react";
 import Box from "@mui/material/Box";
 import Collapse from "@mui/material/Collapse";
@@ -43,12 +44,14 @@ function Row({ row }: rowType) {
           </IconButton>
         </TableCell>
         <TableCell component="th" scope="row" colSpan={1} sx={{ fontSize: 16 }}>
-          {`GH${row.id.substring(9, 13)}`}
+          {`Inspector ${row.name}`}
         </TableCell>
-        <TableCell
-          align="right"
-          sx={{ fontSize: 16 }}
-        >{`Inspector ${row.name}`}</TableCell>
+        <TableCell align="right" sx={{ fontSize: 16 }}>
+          {row.email}
+        </TableCell>
+        <TableCell align="right" sx={{ fontSize: 16 }}>
+          {row.phone}
+        </TableCell>
         <TableCell align="right" sx={{ fontSize: 16 }}>
           {row.badge_number}
         </TableCell>
@@ -125,9 +128,12 @@ export default function PoliceTable() {
         <TableHead>
           <TableRow>
             <TableCell />
-            <TableCell>ID</TableCell>
+            <TableCell> POLICE NAME</TableCell>
             <TableCell align="right" sx={{ fontWeight: "bold" }}>
-              POLICE NAME
+              POLICE EMAIL
+            </TableCell>
+            <TableCell align="right" sx={{ fontWeight: "bold" }}>
+              CONTACT
             </TableCell>
             <TableCell align="right" sx={{ fontWeight: "bold" }}>
               BADGE ID

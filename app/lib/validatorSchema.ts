@@ -30,10 +30,19 @@ export const criminalValidator = withZod(
     weight: z.string().nonempty("* Criminal Weight is required"),
     height: z.string().nonempty("* Criminal Height is required"),
     policeId: z.string().min(1, "* Please assign a person to the case"),
-    crimes: z.union([z.array(z.string()).nonempty(), z.string().nonempty( ' * Please select at least one crime')]), //z.string().min(1, ),
+    crimes: z.union([z.array(z.string()).nonempty(), z.string().nonempty(' * Please select at least one crime')]), //z.string().min(1, ),
     dob: z.string().optional(),
     statement: z.string().optional(),
-     court: z.enum(courts)
+    court: z.enum(courts)
      
-  })
-)
+  }));
+
+  export const policeValidator = withZod(
+    z.object({
+      name: z.string().nonempty("* This field is required"),
+      email: z.string().nonempty("* This field is required").email({ message: "Please enter a valid email address" }),
+      phone: z.string().nonempty("* This field is required"),
+      badge_number: z.string().refine((val) => !Number.isNaN(parseInt(val, 10)), {
+        message: "This field is required "
+      })
+    }))

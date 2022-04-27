@@ -51,7 +51,12 @@ const Dashboard: React.FC<Props> = ({ children }) => {
                   style={{ textDecoration: "none" }}
                 >
                   <Button
-                    sx={{ my: 2, color: "gray", display: "block" }}
+                    sx={{
+                      my: 2,
+                      color: "white",
+                      fontWeight: "bold",
+                      display: "block",
+                    }}
                     disableRipple
                   >
                     {page.name}
