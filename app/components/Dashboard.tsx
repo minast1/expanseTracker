@@ -3,16 +3,29 @@ import { ThemeProvider } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
-import Typography from "@mui/material/Typography";
+//import Typography from "@mui/material/Typography";
 
 import Container from "@mui/material/Container";
 import AccountMenu from "./AccountMenu";
 import theme from "~/src/theme";
 import AppBar from "@mui/material/AppBar";
+import Button from "@mui/material/Button";
+
+import { Link } from "@remix-run/react";
 
 type Props = {
   children: React.ReactNode;
 };
+
+type pageProps = {
+  name: string;
+  location: string;
+};
+
+const pages: pageProps[] = [
+  { name: "Dashboard", location: "/dashboard/" },
+  { name: "Police", location: "/dashboard/police" },
+];
 const Dashboard: React.FC<Props> = ({ children }) => {
   return (
     <ThemeProvider theme={theme}>
@@ -20,16 +33,32 @@ const Dashboard: React.FC<Props> = ({ children }) => {
         <CssBaseline />
         <AppBar>
           <Toolbar>
-            <Typography
-              component="h1"
-              variant="h6"
-              color="inherit"
-              noWrap
-              sx={{ flexGrow: 1 }}
+            <Box
+              sx={{
+                flexGrow: 1,
+                display: {
+                  xs: "none",
+                  md: "flex",
+                  //justifyContent: "flex-start",
+                },
+              }}
             >
-              Dashboard
-            </Typography>
-
+              {pages.map((page, index) => (
+                <Link
+                  key={index}
+                  prefetch="render"
+                  to={page.location}
+                  style={{ textDecoration: "none" }}
+                >
+                  <Button
+                    sx={{ my: 2, color: "gray", display: "block" }}
+                    disableRipple
+                  >
+                    {page.name}
+                  </Button>
+                </Link>
+              ))}
+            </Box>
             <AccountMenu />
           </Toolbar>
         </AppBar>

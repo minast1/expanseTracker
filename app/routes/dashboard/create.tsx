@@ -1,7 +1,6 @@
 import React from "react";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
-import Button from "@mui/material/Button";
 import Box from "@mui/material/Box";
 import theme from "~/src/theme";
 import { FormInputText } from "~/components/FormInputText";
@@ -18,7 +17,7 @@ import {
   getAllCrimesAndHandlers,
 } from "~/controllers/crimeController";
 import { ActionFunction, LoaderFunction } from "@remix-run/node";
-import { Link, useActionData, useLoaderData } from "@remix-run/react";
+import { useActionData, useLoaderData } from "@remix-run/react";
 import MenuItem from "@mui/material/MenuItem";
 import { Court } from "@prisma/client";
 import Alert from "@mui/material/Alert";
@@ -51,21 +50,6 @@ const CreatePage = () => {
     <Card sx={{ mb: 10, mt: 3 }} elevation={12}>
       <Box display="flex" alignItems="center" ml={2} mt={2}>
         <Avatar src="/logo.png" alt="" sx={{ width: 100, height: 100 }} />
-        <Box flexGrow={1} />
-        <Link
-          to="/dashboard/"
-          prefetch="intent"
-          style={{ alignSelf: "flex-end", marginBottom: 10 }}
-        >
-          <Button
-            //href="/dashboard/create"
-            variant="contained"
-            size="small"
-            sx={{ textTransform: "capitalize", mr: 2 }}
-          >
-            Back to Main Area
-          </Button>
-        </Link>
       </Box>
 
       <CardContent sx={{ borderTop: "1px solid lightgray" }}>

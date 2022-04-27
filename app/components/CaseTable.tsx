@@ -60,7 +60,7 @@ export default function CaseInfoTable({ info }: { info: criminalById }) {
                 variant="body2"
                 sx={{ fontFamily: "monospace", fontWeight: 900 }}
               >
-                {info?.handler?.name}
+                {`Inspector ${info?.handler?.name}`}
               </Typography>
             </TableCell>
           </TableRow>

@@ -14,11 +14,10 @@ import {
 import Divider from "@mui/material/Divider";
 import BasicInfoTable from "~/components/BasicInfoTable";
 import CaseInfoTable from "~/components/CaseTable";
-import { Link, useLoaderData } from "@remix-run/react";
+import { useLoaderData } from "@remix-run/react";
 import { format } from "date-fns";
 import Avatar from "@mui/material/Avatar";
 import Box from "@mui/material/Box";
-import Button from "@mui/material/Button";
 
 export const loader: LoaderFunction = async ({ params }) => {
   const id = params.criminalId;
@@ -43,17 +42,6 @@ const ProfilePage = () => {
           </Typography>
           <Typography sx={{ ml: 1 }}> 04394934333</Typography>
         </Box>
-
-        <Link to="/dashboard/" prefetch="intent">
-          <Button
-            //href="/dashboard/create"
-            variant="contained"
-            size="small"
-            sx={{ textTransform: "capitalize", mr: 2 }}
-          >
-            Back to Dashboard Area
-          </Button>
-        </Link>
       </Box>
 
       <CardContent sx={{ borderTop: "1px solid lightgray" }}>
