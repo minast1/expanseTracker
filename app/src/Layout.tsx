@@ -7,11 +7,15 @@ export default function Layout({ children }: { children: React.ReactNode }) {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
   return (
-    <Container maxWidth="md" sx={{ mt: 15, px: 5 }}>
+    <Container maxWidth="md" sx={{ mt: 15, px: 5, backgroundColor: "white" }}>
       <Grid container>
         <Grid item xs={12} sm={12} md={7}>
           <img
-            style={{ height: 500, width: isMobile ? 300 : 500 }}
+            style={{
+              height: 400,
+              width: isMobile ? 300 : 500,
+              objectFit: "contain",
+            }}
             src="/logo.png"
             alt=""
           />
